@@ -69,7 +69,7 @@
 
 
                         </label>
-                        <form id="newcom" method="post" action="{{ route('comments.update',$comment->idComment) }}" >
+                        <form id="newcom{{$comment->idComment}}" method="post" action="{{ route('comments.update',$comment->idComment) }}" >
                             @method('patch')
                             @csrf
                             <input type="hidden" name="idTopic" id="idTopic" value="{{ $comment->idTopic }}"/>
@@ -80,7 +80,7 @@
                     <div class="form-group col-sm-3 mod" >
                         @if (Auth::check())
                             @if (Auth::user()->idUtente == $comment->idUtente)
-                                <button type="submit" form="newcom" id="{{$comment->idComment}}" class="btn btn-info btn-sm btn-flex {{$comment->idComment}}aggiorna" style="display: none;">
+                                <button type="submit" form="newcom{{$comment->idComment}}" id="{{$comment->idComment}}" class="btn btn-info btn-sm btn-flex {{$comment->idComment}}aggiorna" style="display: none;">
                                     {{ __('Aggiorna') }}
                                 </button>
                                 <button type="submit" name="modifica-{{$comment->idComment}}" id="{{$comment->idComment}}" class="btn btn-info btn-sm btn-flex {{$comment->idComment}}modifica"  >
@@ -130,7 +130,6 @@
         $('.'+idCommento+'aggiorna').show();
         $('.'+idCommento+'modifica').hide();
         $('#'+idCommento).show();
-
     });
 </script>
 
